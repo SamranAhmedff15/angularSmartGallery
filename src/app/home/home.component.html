@@ -1,21 +1,21 @@
-<mat-sidenav-container class="main-container" (window:resize)="onResize()">
-  <mat-sidenav [mode]="mode" [opened]="opened" #sidenav>
-    <h3 class="text-center mt-3">Logo</h3>
+<mat-sidenav-container class="main-container bg-white" (window:resize)="onResize()">
+  <mat-sidenav class="border-0 bg-dark" [mode]="mode" [opened]="opened" #sidenav>
+    <h3 class="text-center text-white mt-3">Logo</h3>
     <mat-nav-list>
-      <a mat-list-item routerLink=".">Nav Item 1</a>
-      <a mat-list-item routerLink=".">Nav Item 1</a>
-      <a mat-list-item routerLink=".">Nav Item 1</a>
-      <a mat-list-item routerLink=".">Nav Item 1</a>
-      <a mat-list-item routerLink=".">Nav Item 1</a>
+      <a class="text-secondary" mat-list-item routerLink="."><mat-icon class="mr-2">dashboard</mat-icon>Dashboard</a>
+      <a class="text-secondary" mat-list-item routerLink="."><mat-icon class="mr-2">calendar_today</mat-icon>Calander</a>
+      <a class="text-secondary" mat-list-item routerLink="."><mat-icon class="mr-2">chat</mat-icon>Chat</a>
+      <a class="text-secondary" mat-list-item routerLink="."><mat-icon class="mr-2">insert_chart</mat-icon>Chart</a>
+      <a class="text-secondary" mat-list-item routerLink="."><mat-icon class="mr-2">widgets</mat-icon>Widgets</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar class="position-absolute" color="primary">
+    <mat-toolbar class="position-absolute bg-white shadow-sm">
       <mat-toolbar-row class="justify-content-between justify-content-xl-end">
         <button mat-icon-button (click)="menuToggle()" *ngIf="menubutton">
           <mat-icon>menu</mat-icon>
         </button>
-        <button [routerLink]="['/login']" mat-button>Logout</button>
+        <button mat-raised-button color="primary" [routerLink]="['/login']">Logout</button>
       </mat-toolbar-row>
     </mat-toolbar>
     <div class="d-flex align-items-center h-100">
