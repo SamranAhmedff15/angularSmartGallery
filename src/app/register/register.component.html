@@ -1,33 +1,72 @@
-<div class="d-flex align-items-center h-100">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-sm-5">
-        <mat-card>
-          <h3 class="text-center">Register</h3>
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <mat-form-field class="w-100">
-              <input type="text" matInput placeholder="First Name" formControlName="firstname">
-              <mat-error *ngIf="data.firstname.errors?.required">First Name is required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="w-100">
-              <input type="text" matInput placeholder="Last Name" formControlName="lastname">
-              <mat-error *ngIf="data.lastname.errors?.required">Last Name is required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="w-100">
-              <input type="text" matInput placeholder="Username" formControlName="username">
-              <mat-error *ngIf="data.username.errors?.required">Username is required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="w-100">
-              <input type="password" matInput placeholder="Password" formControlName="password">
-              <mat-error *ngIf="data.password.errors?.required">Password is required</mat-error>
-            </mat-form-field>
-            <div class="mt-4">
-              <button mat-raised-button color="primary">Register</button>
-              <a [routerLink]="['/login']" class="ml-2" mat-button color="primary">Cancel</a>
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="/assets/background.png" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
             </div>
-          </form>
-        </mat-card>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Logo</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create your account</h5>
+
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" formControlName="firstname" placeholder="first name"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" formControlName="lastname" placeholder="last name"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="datetime-local" class="form-control form-control-lg" formControlName="birthday" placeholder="birthday"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="tel" id="phone" name="phone" class="form-control form-control-lg" formControlName="phone" placeholder="phone number"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="email" id="emailField" class="form-control form-control-lg" formControlName="email" placeholder="email address"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="password" formControlName="password" />
+                  </div>
+
+                  <label class="form-check form-check-inline form-outline mb-4">
+                    <mat-radio-group aria-label="Etes-vous Artiste ou Amateur d'art" formControlName="userType">
+                      <mat-radio-button class="form-check-input" value="client">
+                        Amateur d'art
+                      </mat-radio-button>
+                      <mat-radio-button class="form-check-label" value="artiste" style="margin-left: 60px;">
+                        Artiste
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </label>
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">Register</button>
+                  </div>
+                  
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Already have an account? <a [routerLink]="['/login']"
+                      style="color: #393f81;">login here</a></p>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
