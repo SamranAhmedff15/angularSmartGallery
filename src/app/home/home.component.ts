@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { MatDrawer } from '@angular/material/sidenav';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,28 +11,20 @@ export class HomeComponent implements OnInit {
   opened: boolean;
   mode: string;
   menubutton = true;
-  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
-  constructor() { 
-    this.onResize();
+  @ViewChild('matDrawer', { static: false }) matDrawer: MatDrawer;
+  constructor(private router: Router, private _snackBar: MatSnackBar) { 
+    
   }
 
   ngOnInit() {
-  }
-
-  onResize() {
-    if (window.screen.width <= 1199) {
-      this.opened = false;
-      this.menubutton = true;
-      this.mode = "over";
-    } else {
-      this.opened = true;
-      this.mode = "side";
-      this.menubutton = false;
+    if(localStorage.getItem("id") == null){
+      this.logout();
     }
   }
 
-  menuToggle() {
-    this.sidenav.toggle();
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
 }

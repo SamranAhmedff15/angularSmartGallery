@@ -17,13 +17,22 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule} from '@angular/material/radio';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicModule } from '@ionic/angular';
+import { ProfileComponent } from './profile/profile.component';
+import { CartComponent } from './cart/cart.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent,
+    CartComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +46,12 @@ import { MatRadioModule} from '@angular/material/radio';
     MatToolbarModule,
     MatSnackBarModule,
     MatSidenavModule,
+    FlexLayoutModule,
     MatListModule,
     MatIconModule,
     MatRadioModule,
+    HttpClientModule,
+    IonicModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
