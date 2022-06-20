@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.main-container {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mat-drawer-content {
+    overflow: visible;
+}
+
+.container-products {
+    margin-top: 2%;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    max-width: 350px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+thead {
+    color: rgb(47, 47, 105);
+}
+
+.table-style {
+    width: auto;
+    display: block;
+    margin: 10%;
+}

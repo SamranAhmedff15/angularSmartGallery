@@ -1,0 +1,75 @@
+<div>
+    <mat-toolbar class="shadow-sm" color="primary">
+        <button mat-icon-button (click)="drawer.toggle()" *ngIf="menubutton">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-raised-button color="primary" [routerLink]="['/login']" (click)="logout()">Logout</button>
+    </mat-toolbar>
+</div>
+
+<mat-drawer-container class="main-container bg-white">
+    <mat-drawer class="border-0 bg-dark" [mode]="mode" [opened]="opened" #drawer>
+        <h3 class="text-center text-white mt-3">Logo</h3>
+        <mat-nav-list>
+            <a class="text-secondary" mat-list-item routerLink="/home">
+                <mat-icon class="mr-2">store</mat-icon>Gallery
+            </a>
+            <a class="text-secondary" mat-list-item routerLink="/gallery">
+                <mat-icon class="mr-2">art_track</mat-icon>My art
+            </a>
+            <a class="text-secondary" mat-list-item routerLink="/cart">
+                <mat-icon class="mr-2">shopping_cart</mat-icon>Cart
+            </a>
+            <a class="text-secondary" mat-list-item routerLink="/history">
+                <mat-icon class="mr-2">history</mat-icon>History
+            </a>
+            <a class="text-secondary" mat-list-item routerLink="/profile">
+                <mat-icon class="mr-2">account_circle</mat-icon>Profile
+            </a>
+            <a class="text-secondary" mat-list-item routerLink="/favorite">
+                <mat-icon class="mr-2">favorite</mat-icon>Favorite
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="mat-elevation-z8 table-style">
+            <div class="demo-button-container">
+                <button mat-raised-button (click)="addData()" class="demo-button">
+                  Add data
+                </button>
+              </div>
+            <table mat-table [dataSource]="dataSource">
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+
+                <!-- Image Column -->
+                <ng-container matColumnDef="progress">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+                    <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom d'oeuvre </th>
+                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <!-- Nom artiste -->
+                <ng-container matColumnDef="fruit">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom artiste </th>
+                    <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of arts"></mat-paginator>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

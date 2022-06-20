@@ -21,6 +21,13 @@ export class ClientServiceService {
     })
   }
 
+  public update(data : any): Observable<Client> {
+    return this.http.post<Client>(this.clientsUrl + '/api/client/update', data, {
+      headers: new HttpHeaders(
+        { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin', 'Content-Type': 'application/json' })
+    })
+  }
+
   public login(data: any): Observable<Client> {
     return this.http.post<Client>(this.clientsUrl + '/api/client/login', data, {
       headers: new HttpHeaders(

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClientServiceService } from '../client-service.service';
-import { Client } from '../client';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

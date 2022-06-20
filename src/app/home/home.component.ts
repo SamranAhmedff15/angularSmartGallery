@@ -15,11 +15,12 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private _snackBar: MatSnackBar) { 
     
   }
-
+  products : number[]
   ngOnInit() {
     if(localStorage.getItem("id") == null){
       this.logout();
     }
+     this.products = [1,2,3,4,5]
   }
 
   logout() {

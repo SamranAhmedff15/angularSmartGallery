@@ -1,0 +1,25 @@
+.main-container {
+    width: auto;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    max-width: 400px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+thead {
+    color: rgb(47, 47, 105);
+}

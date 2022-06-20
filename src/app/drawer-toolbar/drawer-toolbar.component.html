@@ -1,0 +1,9 @@
+<div>
+    <mat-toolbar class="shadow-sm" color="primary">
+        <button mat-icon-button (click)="drawer.toggle()" *ngIf="menubutton">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-raised-button color="primary" [routerLink]="['/login']" (click)="logout()">Logout</button>
+    </mat-toolbar>
+</div>

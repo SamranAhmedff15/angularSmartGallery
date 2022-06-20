@@ -12,17 +12,26 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule} from '@angular/material/radio';
 import { HttpClientModule } from '@angular/common/http';
-import { IonicModule } from '@ionic/angular';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DrawerToolbarComponent } from './drawer-toolbar/drawer-toolbar.component';
+import { ArtManagementComponent } from './art-management/art-management.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { DialogAddDataComponent } from './dialog-add-data/dialog-add-data.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -32,7 +41,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeComponent,
     ProfileComponent,
     CartComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    DrawerToolbarComponent,
+    ArtManagementComponent,
+    DialogAddDataComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +63,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatRadioModule,
     HttpClientModule,
-    IonicModule.forRoot(),
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
