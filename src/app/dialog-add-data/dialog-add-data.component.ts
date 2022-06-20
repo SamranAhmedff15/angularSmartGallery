@@ -16,6 +16,9 @@ import { UtilserviceService } from '../utilservice.service';
 export class DialogAddDataComponent implements OnInit {
 
   listTypes: TypeOeuvre[];
+  listStyles: Style[];
+  listMats: Materiaux[];
+  listSelectMats : Materiaux[] = [];
   description: string;
   selected: string;
   oeuvre : Oeuvre = new Oeuvre();
@@ -39,11 +42,26 @@ export class DialogAddDataComponent implements OnInit {
     this.materiaux = new Materiaux();
     this.oeuvre.libelleOeuvre = '';
     this.listTypes = await this.initType();
-    
+    this.listMats = await this.initMats();
   }
 
-  changeValue(value:any){
-    console.log(value.id)
+  changeValue(value: TypeOeuvre) {
+    if(value) {
+      this.showSelect = true;
+      this.listStyles = value.styles;
+      for(let element of this.listMats) {
+        console.log("value.id",value.id)
+        if(element.type.id === value.id) {
+          console.log("match !")
+          this.listSelectMats.push(element);
+        }
+      }
+    }
+    else {
+      this.showSelect = false;
+      this.listSelectMats = [];
+      this.listStyles = [];
+    }
   }
 
   save() {
@@ -78,5 +96,18 @@ export class DialogAddDataComponent implements OnInit {
         }
       });
       return this.listTypes;
+    }
+
+    async initMats() {
+      this.utilservice.getAllMats().subscribe({
+        next: (response) => {
+          this.listMats = response;
+          console.log("list mat", this.listMats);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+      return this.listMats;
     }
 }

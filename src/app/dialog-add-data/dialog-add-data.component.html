@@ -70,22 +70,22 @@
                     </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
-            <mat-grid-tile>
+            <mat-grid-tile *ngIf="showSelect">
                 <mat-form-field appearance="fill">
                     <mat-label>Select a style</mat-label>
                     <mat-select [(ngModel)]="style" required>
                         <mat-option>--</mat-option>
-                        <mat-option *ngFor="let style of listTypes" [value]="style">{{style.libelleStyle}}
+                        <mat-option *ngFor="let style of listStyles" [value]="style">{{style.libelleStyle}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
-            <mat-grid-tile>
+            <mat-grid-tile *ngIf="showSelect">
                 <mat-form-field appearance="fill">
                     <mat-label>Select a material</mat-label>
                     <mat-select [(ngModel)]="materiaux" required>
                         <mat-option>--</mat-option>
-                        <mat-option *ngFor="let type of listTypes" [value]="type">{{type.libelleType}}</mat-option>
+                        <mat-option *ngFor="let mat of listSelectMats" [value]="mat">{{mat.libelleMateriaux}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
