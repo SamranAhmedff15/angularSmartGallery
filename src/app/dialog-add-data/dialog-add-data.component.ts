@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Artiste } from '../artiste';
 import { Materiaux } from '../materiaux';
 import { Oeuvre } from '../oeuvre';
+import { Oeuvreresponse } from '../oeuvreresponse';
 import { Style } from '../style';
 import { TypeOeuvre } from '../type-oeuvre';
 import { UtilserviceService } from '../utilservice.service';
@@ -15,6 +17,7 @@ import { UtilserviceService } from '../utilservice.service';
 
 export class DialogAddDataComponent implements OnInit {
 
+  artiste : Artiste;
   listTypes: TypeOeuvre[];
   listStyles: Style[];
   listMats: Materiaux[];
@@ -27,16 +30,17 @@ export class DialogAddDataComponent implements OnInit {
   formData = new FormData();
   materiaux : Materiaux = new Materiaux();
   showSelect = false;
+  oeuvreReponse : Oeuvreresponse = new Oeuvreresponse();
+  
   constructor(
     private utilservice: UtilserviceService,
-    private dialogRef: MatDialogRef<DialogAddDataComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
-
-    this.description = data.description;
-  }
+    private dialogRef: MatDialogRef<DialogAddDataComponent>) {}
 
    async ngOnInit() {
     this.oeuvre = new Oeuvre();
+    this.artiste = new Artiste();
+    this.artiste.mailArtiste = localStorage.getItem("email");
+    this.oeuvre.artiste = this.artiste;
     this.type = new TypeOeuvre();
     this.style = new Style();
     this.materiaux = new Materiaux();
@@ -50,7 +54,6 @@ export class DialogAddDataComponent implements OnInit {
       this.showSelect = true;
       this.listStyles = value.styles;
       for(let element of this.listMats) {
-        console.log("value.id",value.id)
         if(element.type.id === value.id) {
           console.log("match !")
           this.listSelectMats.push(element);
@@ -64,13 +67,27 @@ export class DialogAddDataComponent implements OnInit {
     }
   }
 
-  save() {
-    
+  saveOeuvre() {
+    //this.oeuvre.imgOeuvre = "https://material.angular.io/assets/img/examples/shiba1.jpg";
+    this.utilservice.save(this.oeuvre).subscribe({
+      next: (response) => {
+        this.close(this.oeuvreReponse.oeuvre = response);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
-  close() {
-    this.dialogRef.close();
+  close(record) {
+    if(record != 'cancel') {
+      console.log("wait a moment", record);
+      this.dialogRef.close(record);
+    }else {
+      this.dialogRef.close();
+    }
   }
+  
   fileName = '';
 
     onFileSelected(event) {

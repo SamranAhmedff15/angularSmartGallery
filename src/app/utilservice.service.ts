@@ -4,15 +4,25 @@ import { Observable } from 'rxjs';
 import { Materiaux } from './materiaux';
 import { Style } from './style';
 import { TypeOeuvre } from './type-oeuvre';
+import { Oeuvre } from './oeuvre';
+import { Oeuvreresponse } from './oeuvreresponse';
 @Injectable({
   providedIn: 'root'
 })
 
 export class UtilserviceService {
+  
 
   private utilsUrl: string;
   constructor(private http: HttpClient) { 
     this.utilsUrl = 'http://www.localhost:8080';
+  }
+
+  save(oeuvre: Oeuvre) {
+    return this.http.post<Oeuvre>(this.utilsUrl + '/api/oeuvre/save', oeuvre,{
+      headers: new HttpHeaders(
+        { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin', 'Content-Type': 'application/json' })
+    })
   }
 
   public getAllType(): Observable<TypeOeuvre[]> {
@@ -31,6 +41,13 @@ export class UtilserviceService {
 
   public getAllMats(): Observable<Materiaux[]> {
     return this.http.post<Materiaux[]>(this.utilsUrl + '/api/mat/all', {
+      headers: new HttpHeaders(
+        { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin', 'Content-Type': 'application/json' })
+    })
+  }
+
+  public getAllOeuvres(): Observable<Oeuvreresponse[]> {
+    return this.http.post<Oeuvreresponse[]>(this.utilsUrl + '/api/oeuvre/all', {
       headers: new HttpHeaders(
         { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin', 'Content-Type': 'application/json' })
     })

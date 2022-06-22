@@ -35,41 +35,69 @@
     <mat-drawer-content>
         <div class="mat-elevation-z8 table-style">
             <div class="demo-button-container">
-                <button mat-raised-button (click)="addData()" class="demo-button">
-                  Add data
+                <button mat-raised-button color="primary" (click)="openDialog()" class="demo-button">
+                    Add data
                 </button>
-              </div>
-            <table mat-table [dataSource]="dataSource">
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-                </ng-container>
+            </div>
+            <table mat-table [dataSource]="dataSource" #myTable>
 
                 <!-- Image Column -->
-                <ng-container matColumnDef="progress">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
-                    <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                <ng-container matColumnDef="image">
+                    <th mat-header-cell *matHeaderCellDef (click)="checkTS()"> Image </th>
+                    <td mat-cell *matCellDef="let element"> <div class="img-div">
+                        <img src= '{{element.oeuvre.imgOeuvre}}' style="width: 100%;"> 
+                    </div> </td>
                 </ng-container>
 
-                <!-- Name Column -->
+                <!-- Art name -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom d'oeuvre </th>
-                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Nom d'oeuvre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oeuvre.libelleOeuvre}} </td>
+                </ng-container>
+                
+                <!-- Description -->
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oeuvre.descriptionOeuvre}} </td>
                 </ng-container>
 
-                <!-- Nom artiste -->
-                <ng-container matColumnDef="fruit">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom artiste </th>
-                    <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+                <!-- Date de realisation -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef > Date de realisation </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oeuvre.dateRealisation}} </td>
+                </ng-container>
+
+                <!-- stock -->
+                <ng-container matColumnDef="stock">
+                    <th mat-header-cell *matHeaderCellDef> Quantite stock </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oeuvre.qteStockOeuvre}} </td>
+                </ng-container>
+
+                <!-- Prix -->
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef > Date de realisation </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oeuvre.prixOeuvre}} M.A.D </td>
+                </ng-container>
+
+                <!-- Taut de remise -->
+                <ng-container matColumnDef="reduction">
+                    <th mat-header-cell *matHeaderCellDef > Taux de remise </th>
+                    <td mat-cell *matCellDef="let element"> {{element.oeuvre.tautRemise}}% </td>
+                </ng-container>
+
+                <!-- Action -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef > Action </th>
+                    <td mat-cell *matCellDef="let element" class="action-link">
+                        <button mat-raised-button color="primary" (click)="Update(element)" class="actions">Modifier</button>
+                        <button mat-raised-button color="warn" (click)="Delete(element)" class="actions">Supprimer</button>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
             </table>
-
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of arts"></mat-paginator>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

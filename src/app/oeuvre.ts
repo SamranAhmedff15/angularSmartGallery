@@ -1,3 +1,4 @@
+import { Artiste } from "./artiste";
 import { TypeOeuvre } from "./type-oeuvre";
 
 export class Oeuvre {
@@ -10,5 +11,5 @@ export class Oeuvre {
     dateRealisation : string;
     tautRemise : number;
     type : TypeOeuvre;
-    idClient : number;
+    artiste : Artiste;
 } {}

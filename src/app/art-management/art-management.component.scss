@@ -7,9 +7,15 @@ table {
     width: 100%;
 }
 
-td,
-th {
-    width: 25%;
+th.mat-header-cell {
+    text-align: center;
+}
+
+td,th {
+    width: 15%;
+    font-size: large;
+    align-items: center;
+    text-align: center;
 }
 
 .main-container {
@@ -33,21 +39,26 @@ th {
     flex: 1 1 auto;
 }
 
-.example-card {
-    max-width: 350px;
-}
-
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
-
-thead {
-    color: rgb(47, 47, 105);
-}
-
 .table-style {
     width: auto;
     display: block;
-    margin: 10%;
+    margin: 5%;
+}
+
+.demo-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.actions {
+    margin: 8px;
+    font-size: 12px;
+    width: 80px;
+    height: auto;
+}
+
+.img-div {
+    padding: 1em;
 }
