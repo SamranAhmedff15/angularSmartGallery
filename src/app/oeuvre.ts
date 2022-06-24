@@ -1,5 +1,6 @@
 import { Artiste } from "./artiste";
 import { TypeOeuvre } from "./type-oeuvre";
+import { Uploadedfile } from "./uploadedfile";
 
 export class Oeuvre {
     id : number;
@@ -12,4 +13,5 @@ export class Oeuvre {
     tautRemise : number;
     type : TypeOeuvre;
     artiste : Artiste;
+    file : Uploadedfile;
 } {}

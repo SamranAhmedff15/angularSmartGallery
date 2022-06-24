@@ -3,6 +3,10 @@
     <button mat-icon-button (click)="drawer.toggle()" *ngIf="menubutton">
       <mat-icon>menu</mat-icon>
     </button>
+    <button mat-icon-button [routerLink]="['/cart']" style="margin-left: 50px;">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    
     <span class="example-spacer"></span>
     <button mat-raised-button color="primary" [routerLink]="['/login']" (click)="logout()">Logout</button>
   </mat-toolbar>
@@ -10,12 +14,14 @@
 
 <mat-drawer-container class="main-container bg-white">
   <mat-drawer class="border-0 bg-dark" [mode]="mode" [opened]="opened" #drawer>
-    <h3 class="text-center text-white mt-3">Logo</h3>
+    <h3 class="text-center text-white mt-3">
+        <img src="assets/logo01.jpg" style="width: 80px;">
+    </h3>
     <mat-nav-list>
-      <a class="text-secondary" mat-list-item routerLink="/home" >
+      <a class="text-secondary" mat-list-item routerLink="/home">
         <mat-icon class="mr-2">store</mat-icon>Gallery
       </a>
-      <a class="text-secondary" mat-list-item routerLink="/gallery">
+      <a class="text-secondary" mat-list-item routerLink="/gallery" *ngIf="isArtiste">
         <mat-icon class="mr-2">art_track</mat-icon>My art
       </a>
       <a class="text-secondary" mat-list-item routerLink="/cart">
@@ -33,28 +39,40 @@
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
-    <div class="container-products">
+    <div class="content">
       <div fxLayout="row wrap" fxLayoutGap="16px grid">
-        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"
-          *ngFor="let num of products">
-          <mat-card class="example-card">
+        <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let element of products">
+          <mat-card class="mat-elevation-z4 card-style">
             <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+              <mat-card-title> {{element.oeuvre.libelleOeuvre}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt="Photo of a Shiba Inu">
+            <img mat-card-image class="img-responsive hover-overlay ripple" src='{{element.oeuvre.imgOeuvre}}'>
             <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
+              <mat-card-subtitle>
+                <p> By:{{element.artiste.nomArtiste}} {{element.artiste.prenomArtiste}}</p>
+              </mat-card-subtitle>
+              <div>
+                <p>
+                  {{element.oeuvre.descriptionOeuvre}}
+                </p>
+              </div>
             </mat-card-content>
+            <mat-divider></mat-divider>
             <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
+              <div class="example-button-row">
+                <div class="example-flex-container">
+                  <div class="example-button-container">
+                    <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                      <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                  </div>
+                  <div class="example-button-container">
+                    <button mat-fab color="warn" aria-label="Example icon button with a heart icon">
+                      <mat-icon>favorite</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </mat-card-actions>
           </mat-card>
         </div>

@@ -32,6 +32,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { DialogDeleteDataComponent } from './dialog-delete-data/dialog-delete-data.component';
+import { DialogUpdateDataComponent } from './dialog-update-data/dialog-update-data.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import {MatSelectModule} from '@angular/material/select';
     FavoriteComponent,
     DrawerToolbarComponent,
     ArtManagementComponent,
-    DialogAddDataComponent
+    DialogAddDataComponent,
+    DialogDeleteDataComponent,
+    DialogUpdateDataComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatGridListModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

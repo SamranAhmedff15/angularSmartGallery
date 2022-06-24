@@ -6,6 +6,7 @@ import { Oeuvre } from '../oeuvre';
 import { Oeuvreresponse } from '../oeuvreresponse';
 import { Style } from '../style';
 import { TypeOeuvre } from '../type-oeuvre';
+import { Uploadedfile } from '../uploadedfile';
 import { UtilserviceService } from '../utilservice.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { UtilserviceService } from '../utilservice.service';
 
 export class DialogAddDataComponent implements OnInit {
 
+  uploadedFile : Uploadedfile;
   artiste : Artiste;
   listTypes: TypeOeuvre[];
   listStyles: Style[];
@@ -37,7 +39,10 @@ export class DialogAddDataComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogAddDataComponent>) {}
 
    async ngOnInit() {
+    this.uploadedFile = new Uploadedfile();
     this.oeuvre = new Oeuvre();
+    this.oeuvreReponse = new Oeuvreresponse();
+    this.oeuvreReponse = new Oeuvreresponse();
     this.artiste = new Artiste();
     this.artiste.mailArtiste = localStorage.getItem("email");
     this.oeuvre.artiste = this.artiste;
@@ -54,6 +59,8 @@ export class DialogAddDataComponent implements OnInit {
       this.showSelect = true;
       this.listStyles = value.styles;
       for(let element of this.listMats) {
+        console.log("selected type");
+        console.log("mat list", this.listMats)
         if(element.type.id === value.id) {
           console.log("match !")
           this.listSelectMats.push(element);
@@ -66,12 +73,16 @@ export class DialogAddDataComponent implements OnInit {
       this.listStyles = [];
     }
   }
+  
 
-  saveOeuvre() {
-    //this.oeuvre.imgOeuvre = "https://material.angular.io/assets/img/examples/shiba1.jpg";
+  async saveOeuvre() {
+    
     this.utilservice.save(this.oeuvre).subscribe({
-      next: (response) => {
-        this.close(this.oeuvreReponse.oeuvre = response);
+      next: async (response) => {
+        await new Promise(f => setTimeout(f, 200));
+        this.oeuvreReponse.oeuvre = response;
+        console.log("returned to main component", this.oeuvreReponse);
+        this.close(this.oeuvreReponse);
       },
       error: (error) => {
         console.log(error);
@@ -87,19 +98,31 @@ export class DialogAddDataComponent implements OnInit {
       this.dialogRef.close();
     }
   }
+
   
   fileName = '';
+  file:File;
+  
 
-    onFileSelected(event) {
-
-        const file:File = event.target.files[0];
-
-        if (file) {
-
-            this.fileName = file.name;
-
-            this.formData.append("thumbnail", file);
-        }
+    async onFileSelected(event) {
+        var file:File = event.target.files[0];
+        if(file)
+        {
+          this.fileName = file.name;
+          this.formData.append("file", file);
+          this.oeuvre.imgOeuvre = file.name;
+          this.utilservice.upload(this.formData).subscribe({
+            next: async (response) => {
+              await new Promise(f => setTimeout(f, 500));
+              this.uploadedFile = await response;
+              this.oeuvre.file = this.uploadedFile;
+              this.oeuvre.imgOeuvre = "assets/pictures/"+file.name;
+            },
+            error: (error) => {
+              console.log(error);
+            }
+          });
+      }
     }
 
     async initType(){

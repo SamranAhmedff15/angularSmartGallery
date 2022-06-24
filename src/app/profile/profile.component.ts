@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   menubutton = true;
   registerForm: FormGroup;
   submitted = false;
+  type_user = "Amateur d'art"
   @ViewChild('matDrawer', { static: false }) matDrawer: MatDrawer;
   constructor(private router: Router, private _snackBar: MatSnackBar, private formBuilder: FormBuilder,private clientService: ClientServiceService) { 
     
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   }
   products : number[];
   user : Client = new Client();
+  isArtiste : boolean
   ngOnInit() {
     this.user.prenomClient = localStorage.getItem("fname");
     this.user.nomClient = localStorage.getItem("lname");
@@ -42,7 +44,10 @@ export class ProfileComponent implements OnInit {
       phone: [this.user.telClient, Validators.required],
     });
     console.log(this.registerForm.status)
-    
+    if(localStorage.getItem("type") != 'client') {
+      this.type_user = 'Artiste';
+      this.isArtiste = true;
+    }
   }
 
   get data() { return this.registerForm.controls; }

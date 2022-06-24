@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatDrawer } from '@angular/material/sidenav';
+import { OeuvreResponseMain } from '../oeuvre-response-main';
+import { UtilserviceService } from '../utilservice.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,16 +13,25 @@ export class HomeComponent implements OnInit {
   opened: boolean;
   mode: string;
   menubutton = true;
+  isArtiste = false;
+  oeuvreRespponseMain: OeuvreResponseMain[] = [];
   @ViewChild('matDrawer', { static: false }) matDrawer: MatDrawer;
-  constructor(private router: Router, private _snackBar: MatSnackBar) { 
-    
+  constructor(private router: Router, private _snackBar: MatSnackBar, public utilservice: UtilserviceService) {
+
   }
-  products : number[]
-  ngOnInit() {
-    if(localStorage.getItem("id") == null){
+  products: OeuvreResponseMain[]
+  async ngOnInit() {
+    if (localStorage.getItem("id") == null) {
       this.logout();
     }
-     this.products = [1,2,3,4,5]
+    await new Promise(f => setTimeout(f, 500));
+    var holder = await this.loadAllArts();
+    console.log(holder)
+    this.products = holder
+    console.log(this.products)
+    if(localStorage.getItem("type") === 'artiste') {
+      this.isArtiste = true;
+    }
   }
 
   logout() {
@@ -28,4 +39,17 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-}
+  async loadAllArts() {
+      this.utilservice.getOeuvres().subscribe({
+        next: (response) => {
+          this.oeuvreRespponseMain = response;
+          console.log("list oeuvres", this.oeuvreRespponseMain);
+          this.products = this.oeuvreRespponseMain;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+      return this.oeuvreRespponseMain;
+    }
+  }

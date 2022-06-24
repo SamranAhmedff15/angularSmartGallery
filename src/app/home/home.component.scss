@@ -5,8 +5,13 @@
     right: 0;
 }
 
+.mat-drawer-container {
+    height: 100%;
+}
+
 .mat-drawer-content {
     overflow: visible;
+    height: max-content;
 }
 
 .container-products {
@@ -19,15 +24,137 @@
     flex: 1 1 auto;
 }
 
-.example-card {
-    max-width: 350px;
+.example-spacer-actions {
+    display: flex;
+    flex: 1 1 auto;
 }
 
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+.example-card {
+    max-width: 350px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
+
+.card-header {
+    text-align: center;
+    background-color: white;
+    padding: 0%;
+    margin: 0;
+    width: fit-content;
+}
+
 
 thead {
     color: rgb(47, 47, 105);
+}
+
+section {
+    display: table;
+}
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+}
+
+.example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.image-layout {
+    padding: 8px;
+    margin: auto;
+    display: block;
+    height: 350px;
+    width: 250px;
+
+}
+
+span {
+    text-align: center;
+}
+
+.content {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+
+.content>mat-card {
+    margin-bottom: 8px;
+}
+
+p {
+    margin: 5px;
+}
+
+mat-card img {
+    object-fit: cover;
+    /*this makes the image in src fit to the size specified below*/
+    width: 100%;
+    /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+    height: 60%;
+    margin: 0%;
+}
+
+.card-style {
+    width: 350px;
+    height: 550px;
+}
+
+section {
+    display: table;
+}
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+}
+
+.example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.divide {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

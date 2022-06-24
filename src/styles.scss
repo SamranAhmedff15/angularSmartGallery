@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: max-content;}
 
 button:focus {
     outline: none;
@@ -12,7 +12,7 @@ a:hover {
 }
 
 .main-container {
-    height: auto;
+    height: max-content;
     top: 0;
     bottom: 0;
     left: 0;
@@ -20,8 +20,14 @@ a:hover {
 }
 
 .mat-drawer-content {
-    overflow: visible;
+    height: max-content;
 }
+
+.mat-drawer-container {
+    overflow: visible;
+    height: 100%;
+}
+
 
 .container-products {
     margin-top: 2%;

@@ -6,11 +6,33 @@ import { Style } from './style';
 import { TypeOeuvre } from './type-oeuvre';
 import { Oeuvre } from './oeuvre';
 import { Oeuvreresponse } from './oeuvreresponse';
+import { Uploadedfile } from './uploadedfile';
+import { OeuvreResponseMain } from './oeuvre-response-main';
 @Injectable({
   providedIn: 'root'
 })
 
 export class UtilserviceService {
+  getOeuvres() {
+    return this.http.post<OeuvreResponseMain[]>(this.utilsUrl + '/api/oeuvre/all/art', {
+      headers: new HttpHeaders(
+        { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin', 'Content-Type': 'application/json' })
+    })
+  }
+  
+  upload(formData: FormData) {
+    return this.http.post<Uploadedfile>(this.utilsUrl + '/api/file/upload', formData, {
+      headers: new HttpHeaders(
+        { 'Access-Control-Allow-Origin': '*' })
+    })
+  }
+
+  deleteOeuvre(data : number) {
+    return this.http.post<any>(this.utilsUrl + '/api/oeuvre/delete', data, {
+      headers: new HttpHeaders(
+        { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin', 'Content-Type': 'application/json' })
+    })
+  }
   
 
   private utilsUrl: string;

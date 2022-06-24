@@ -3,6 +3,9 @@
         <button mat-icon-button (click)="drawer.toggle()" *ngIf="menubutton">
             <mat-icon>menu</mat-icon>
         </button>
+        <button mat-icon-button [routerLink]="['/cart']" style="margin-left: 50px;" matBadge="15" matBadgeColor="warn">
+            <mat-icon >shopping_cart</mat-icon>
+          </button>
         <span class="example-spacer"></span>
         <button mat-raised-button color="primary" [routerLink]="['/login']" (click)="logout()">Logout</button>
     </mat-toolbar>
@@ -10,12 +13,12 @@
 
 <mat-drawer-container class="main-container bg-white">
     <mat-drawer class="border-0 bg-dark" [mode]="mode" [opened]="opened" #drawer>
-        <h3 class="text-center text-white mt-3">Logo</h3>
+        <h3 class="text-center text-white mt-3"><img src="assets/logo01.jpg" style="width: 80px;"></h3>
         <mat-nav-list>
             <a class="text-secondary" mat-list-item routerLink="/home">
                 <mat-icon class="mr-2">store</mat-icon>Gallery
             </a>
-            <a class="text-secondary" mat-list-item routerLink="/gallery">
+            <a class="text-secondary" mat-list-item routerLink="/gallery" *ngIf="isArtiste">
                 <mat-icon class="mr-2">art_track</mat-icon>My art
             </a>
             <a class="text-secondary" mat-list-item routerLink="/cart">
@@ -52,17 +55,17 @@
                                                 <img class="avatar">
                                             </div>
 
-                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Artiste</h5>
+                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">{{type_user}}</h5>
 
                                             <label>
-                                                <em>First name</em>
+                                                <em>Prenom</em>
                                             </label>
                                             <div class="form-outline mb-3">
                                                 <input type="text" class="form-control form-control"
                                                     formControlName="firstname" placeholder="first name" [(ngModel)]="user.prenomClient"/>
                                             </div>
                                             <label>
-                                                <em>Last name</em>
+                                                <em>Nom</em>
                                             </label>
                                             <div class="form-outline mb-3">
                                                 <input type="text" class="form-control form-control"
@@ -70,7 +73,7 @@
                                             </div>
                                             <label>
                                                 <em>
-                                                    Birthday
+                                                    Date de naissance
                                                 </em>
                                             </label>
                                             <div class="form-outline mb-3">
@@ -78,7 +81,7 @@
                                                     formControlName="birthday" placeholder="birthday" />
                                             </div>
                                             <label>
-                                                <em>Phone number</em>
+                                                <em>Numero de telephone</em>
                                             </label>
                                             <div class="form-outline mb-3">
                                                 <input type="tel" id="phone" name="phone"
@@ -88,7 +91,7 @@
 
                                             <div class="pt-1 mb-4">
                                                 <button class="btn btn-dark btn-lg btn-block"
-                                                    type="submit">Update</button>
+                                                    type="submit">Valider</button>
                                             </div>
                                         </form>
                                     </div>
