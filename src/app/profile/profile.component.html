@@ -3,7 +3,7 @@
         <button mat-icon-button (click)="drawer.toggle()" *ngIf="menubutton">
             <mat-icon>menu</mat-icon>
         </button>
-        <button mat-icon-button [routerLink]="['/cart']" style="margin-left: 50px;" matBadge="15" matBadgeColor="warn">
+        <button mat-icon-button [routerLink]="['/cart']" style="margin-left: 50px;" matBadge={{badge_val}} matBadgeColor="warn">
             <mat-icon >shopping_cart</mat-icon>
           </button>
         <span class="example-spacer"></span>

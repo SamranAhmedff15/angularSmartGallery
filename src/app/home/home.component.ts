@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   mode: string;
   menubutton = true;
   isArtiste = false;
+  badge_val : number;
   oeuvreRespponseMain: OeuvreResponseMain[] = [];
   @ViewChild('matDrawer', { static: false }) matDrawer: MatDrawer;
   constructor(private router: Router, private _snackBar: MatSnackBar, public utilservice: UtilserviceService) {
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem("id") == null) {
       this.logout();
     }
+    this.badge_val = Number(localStorage.getItem("cart"));
     await new Promise(f => setTimeout(f, 500));
     var holder = await this.loadAllArts();
     console.log(holder)
@@ -37,6 +39,13 @@ export class HomeComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  addToCart() {
+    var cart = localStorage.getItem("cart");
+    var num = Number(cart) +1;
+    localStorage.setItem("cart", num.toString());
+    this.badge_val = Number(localStorage.getItem("cart"));
   }
 
   async loadAllArts() {

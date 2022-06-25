@@ -27,11 +27,13 @@ export class ProfileComponent implements OnInit {
   products : number[];
   user : Client = new Client();
   isArtiste : boolean
+  badge_val: number = 0;
   ngOnInit() {
     this.user.prenomClient = localStorage.getItem("fname");
     this.user.nomClient = localStorage.getItem("lname");
     this.user.dateNaissanceClient = localStorage.getItem("bd");
     this.user.telClient = localStorage.getItem("phone");
+    this.badge_val = Number(localStorage.getItem("cart"));
     this.products = [1,2,3,4,5]
     if(localStorage.getItem("id") == null){
       this.logout();

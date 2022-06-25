@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("type",response.typeClient.toString());
           localStorage.setItem("phone",response.telClient.toString());
           localStorage.setItem("password",response.passClient.toString());
+          localStorage.setItem("cart","0");
           this.router.navigate(['/home']);
         }
         

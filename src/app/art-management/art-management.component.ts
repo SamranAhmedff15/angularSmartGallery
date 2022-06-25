@@ -30,6 +30,7 @@ export class ArtManagementComponent implements OnInit {
   mode: string;
   menubutton = true;
   name: any;
+  badge_val : number = 0;
   constructor(private router: Router, public dialog: MatDialog, public utilservice: UtilserviceService) {
   }
 
@@ -39,6 +40,7 @@ export class ArtManagementComponent implements OnInit {
     }
     this.dataSource = await this.getOeuvres();
     console.log("oninit dts", this.dataSource);
+    this.badge_val = Number(localStorage.getItem("cart"));
   }
 
   async getOeuvres() {
